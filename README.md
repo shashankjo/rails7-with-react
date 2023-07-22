@@ -1,5 +1,5 @@
 # README
-
+This repo is for my practice of Rails with react
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
