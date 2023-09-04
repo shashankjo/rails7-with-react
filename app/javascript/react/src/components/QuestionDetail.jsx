@@ -15,7 +15,6 @@ class QuestionDetail extends React.Component {
 
   updateLikeCount = () => {
     this.setState((state) => {
-      console.log("shashankkkkkkkk")
       return{
         likeCount: state.likeCount + 1
       }
@@ -24,7 +23,6 @@ class QuestionDetail extends React.Component {
 
   updateDisLikeCount = () => {
     this.setState((state) => {
-      console.log("shashank")
       return{
         dislikeCount: state.dislikeCount + 1
       }
@@ -44,10 +42,11 @@ class QuestionDetail extends React.Component {
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">{this.state.likeCount}</span> : ''
             }
           </button>
-          <button type="button" className="btn btn-danger position-relative" onClick={this.updateDislikeCount}>
+
+          <button type="button" className="btn btn-danger position-relative" onClick={this.updateDisLikeCount}>
             Dislike
             { this.state.dislikeCount > 0 ?
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{this.state.dislikeCount}</span> : ''
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">{this.state.dislikeCount}</span> : ''
             }
           </button>
         </div>
