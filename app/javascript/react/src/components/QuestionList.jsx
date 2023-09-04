@@ -1,35 +1,25 @@
 import * as React from 'react'
+import { useState, useEffect } from 'react'
 import * as ReactDOM from 'react-dom'
 import QuestionDetail from './QuestionDetail'
 
 const QuestionList = () => {
-    const questionList = [
-        {
-          id: 1,
-          title: 'How to check if a key is present in a Hash?',
-          tag: 'Ruby'
-        },
-        {
-          id: 2,
-          title: 'What is the difference between string and a symbol?',
-          tag: 'Ruby'
-        },
-        {
-          id: 3,
-          title: 'What will happen if we add two keys with the same name in a Hash?',
-          tag: 'Ruby'
-        },
-        {
-          id: 4,
-          title: 'How to delete a given key from a Hash?',
-          tag: 'Ruby'
-        },
-        {
-          id: 5,
-          title: 'How to check if two hashes are identical?',
-          tag: 'Ruby'
-        }
-    ]
+  const [questionList, setQuestionList] = useState([])
+  const questionsUrl = 'http://localhost:3000/api/v1/questions'
+
+  const fetchQuestionsList = () => {
+    fetch(questionsUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        setQuestionList(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchQuestionsList()
+  }, [])
+
   return (
     <div className='row'>
       <div className='col-lg-10 mx-auto'>
