@@ -14,17 +14,17 @@ class QuestionDetail extends React.Component {
   }
 
   updateLikeCount = () => {
-    this.setState((state) => {
+    this.setState(() => {
       return{
-        likeCount: state.likeCount + 1
+        likeCount: this.state.likeCount + 1
       }
     })
   }
 
   updateDisLikeCount = () => {
-    this.setState((state) => {
+    this.setState(() => {
       return{
-        dislikeCount: state.dislikeCount + 1
+        dislikeCount: this.state.dislikeCount + 1
       }
     })
   }
