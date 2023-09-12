@@ -6,8 +6,8 @@ class QuestionDetail extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      likeCount: 0,
-      dislikeCount: 0
+      likeCount: this.props.question.likes_count,
+      dislikeCount: this.props.question.dislikes_count
     }
     this.updateLikeCount = this.updateLikeCount.bind(this)
     this.updateDisLikeCount = this.updateDisLikeCount.bind(this)
@@ -19,6 +19,7 @@ class QuestionDetail extends React.Component {
         likeCount: this.state.likeCount + 1
       }
     })
+    this.updateQuestionCounter({count_for: 'like'})
   }
 
   updateDisLikeCount = () => {
@@ -26,6 +27,24 @@ class QuestionDetail extends React.Component {
       return{
         dislikeCount: this.state.dislikeCount + 1
       }
+    })
+    this.updateQuestionCounter({count_for: 'dislike'})
+  }
+
+  updateQuestionCounter = (request_body) => {
+    fetch(`http://localhost:3000/api/v1/questions/${this.props.question.id}/update_counter`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(request_body)
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((error) => {
+      console.log(error)
     })
   }
 
