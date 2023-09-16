@@ -3,7 +3,11 @@ module Api
     class QuestionsController < ApplicationController
 
       def index
-        @questions = Question.all
+        if params[:tags].present? && params[:tags] != 'All'
+          @questions = Question.where(tag: params[:tags])
+        elsif
+            @questions = Question.all
+        end
         render json: @questions
       end
 
