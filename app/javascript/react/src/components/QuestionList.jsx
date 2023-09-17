@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useState, useEffect } from 'react'
 import * as ReactDOM from 'react-dom'
 import QuestionDetail from './QuestionDetail'
+import EmptyQuestionMessage from './EmptyQuestionMessage'
 
 const QuestionList = () => {
 
@@ -55,9 +56,14 @@ const QuestionList = () => {
           ))}
         </select>
 
-        {questionList.map((question) =>
-        <QuestionDetail question={question} key={question.id}/>
-        )}
+        {
+          questionList.length > 0 ?
+          questionList.map((question) =>
+          <QuestionDetail question={question} key={question.id}/>
+          )
+          :
+          <EmptyQuestionMessage tagname={questionsTags[selectedOption].label}/>
+        }
       </div>
     </div>
   )
